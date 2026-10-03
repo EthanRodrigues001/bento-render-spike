@@ -301,3 +301,22 @@ margin (24px total gutter); `<br />` gives exactly 8px.
 ## FINAL — Mode A, same design as one image
 
 <a href="https://github.com/vercel/next.js"><picture><source media="(prefers-color-scheme: dark)" srcset="v2/frame-dark.png" /><img src="v2/frame-light.png" width="792" alt="bento" /></picture></a>
+
+---
+
+# ★★ AUTO-LAYOUT — even padding, no dead space
+
+Rebuilt after comparing against shieldcn's badges and the Next.js README, where every
+element is content-sized with one tight padding value. The first pass hand-positioned
+every layer and used **four different padding values (18/20/22/24px)**, left tall tiles
+mostly empty, and silently drifted off-centre when the grid geometry changed.
+
+Now: one `SPACE.pad` token everywhere, layers flow in flex containers (Figma-style auto
+layout), the wide CTA anchors content at both ends, and a taller tile earns bigger type
+instead of more empty space.
+
+<a href="https://github.com/vercel/next.js"><picture><source media="(prefers-color-scheme: dark)" srcset="v3/hero-dark.png" /><img src="v3/hero-light.png" width="396" alt="The React Framework for the Web. Used by some of the world's largest companies." /></picture></a><a href="https://github.com/vercel/next.js/stargazers"><picture><source media="(prefers-color-scheme: dark)" srcset="v3/stars-dark.png" /><img src="v3/stars-light.png" width="198" alt="stars" /></picture></a><a href="https://github.com/vercel/next.js/forks"><picture><source media="(prefers-color-scheme: dark)" srcset="v3/forks-dark.png" /><img src="v3/forks-light.png" width="198" alt="forks" /></picture></a><br /><a href="https://github.com/vercel/next.js"><picture><source media="(prefers-color-scheme: dark)" srcset="v3/langs-dark.png" /><img src="v3/langs-light.png" width="396" alt="LANGUAGES" /></picture></a><a href="https://github.com/vercel/next.js/issues"><picture><source media="(prefers-color-scheme: dark)" srcset="v3/issues-dark.png" /><img src="v3/issues-light.png" width="198" alt="issues" /></picture></a><a href="https://github.com/vercel/next.js/blob/canary/license.md"><picture><source media="(prefers-color-scheme: dark)" srcset="v3/license-dark.png" /><img src="v3/license-light.png" width="198" alt="license" /></picture></a><br /><a href="https://nextjs.org/docs"><picture><source media="(prefers-color-scheme: dark)" srcset="v3/docs-dark.png" /><img src="v3/docs-light.png" width="792" alt="Read the docs →" /></picture></a>
+
+### Same design as one image (Mode A)
+
+<a href="https://github.com/vercel/next.js"><picture><source media="(prefers-color-scheme: dark)" srcset="v3/frame-dark.png" /><img src="v3/frame-light.png" width="792" alt="bento" /></picture></a>
