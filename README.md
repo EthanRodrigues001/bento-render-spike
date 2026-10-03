@@ -220,3 +220,55 @@ match, so it doubles as the reference for how A/B/C should look.
 No HTML at all. Cannot carry a link; included only to confirm the images themselves are fine.
 
 ![bento](img/frame-light.png)
+
+---
+
+## G — NO TABLE: strips of inline linked images
+
+**This is the important one.** GitHub's CSS puts `border: 1px solid` and `padding: 6px 13px`
+on every `<td>`, and zebra-stripes even rows. Images *outside* a table get none of that
+(`.markdown-body img { box-sizing: content-box; max-width: 100% }` only).
+
+So: slice the design into horizontal strips, and lay each strip out as inline `<a><img></a>`
+with **no whitespace between the tags**. Every tile still gets its own link.
+
+### G1 — no whitespace between tags
+
+<a href="https://github.com/vercel/next.js"><img src="img/langs-light.png" width="388" alt="languages" /></a><a href="https://nextjs.org/docs"><img src="img/docs-light.png" width="388" alt="docs" /></a>
+
+<a href="https://github.com/vercel/next.js/stargazers"><img src="img/stars-light.png" width="190" alt="stars" /></a><a href="https://github.com/vercel/next.js/forks"><img src="img/forks-light.png" width="190" alt="forks" /></a><a href="https://github.com/vercel/next.js/issues"><img src="img/issues-light.png" width="190" alt="issues" /></a><a href="https://github.com/vercel/next.js/blob/canary/license.md"><img src="img/license-light.png" width="190" alt="license" /></a>
+
+### G2 — same, but with newlines between the tags
+
+If this shows extra horizontal gaps, whitespace between inline images is significant and
+the generator must emit G1's format exactly.
+
+<a href="https://github.com/vercel/next.js"><img src="img/langs-light.png" width="388" alt="languages" /></a>
+<a href="https://nextjs.org/docs"><img src="img/docs-light.png" width="388" alt="docs" /></a>
+
+<a href="https://github.com/vercel/next.js/stargazers"><img src="img/stars-light.png" width="190" alt="stars" /></a>
+<a href="https://github.com/vercel/next.js/forks"><img src="img/forks-light.png" width="190" alt="forks" /></a>
+<a href="https://github.com/vercel/next.js/issues"><img src="img/issues-light.png" width="190" alt="issues" /></a>
+<a href="https://github.com/vercel/next.js/blob/canary/license.md"><img src="img/license-light.png" width="190" alt="license" /></a>
+
+---
+
+## H — strips + dark mode
+
+<a href="https://github.com/vercel/next.js"><picture><source media="(prefers-color-scheme: dark)" srcset="img/langs-dark.png" /><img src="img/langs-light.png" width="388" alt="languages" /></picture></a><a href="https://nextjs.org/docs"><picture><source media="(prefers-color-scheme: dark)" srcset="img/docs-dark.png" /><img src="img/docs-light.png" width="388" alt="docs" /></picture></a>
+
+<a href="https://github.com/vercel/next.js/stargazers"><picture><source media="(prefers-color-scheme: dark)" srcset="img/stars-dark.png" /><img src="img/stars-light.png" width="190" alt="stars" /></picture></a><a href="https://github.com/vercel/next.js/forks"><picture><source media="(prefers-color-scheme: dark)" srcset="img/forks-dark.png" /><img src="img/forks-light.png" width="190" alt="forks" /></picture></a><a href="https://github.com/vercel/next.js/issues"><picture><source media="(prefers-color-scheme: dark)" srcset="img/issues-dark.png" /><img src="img/issues-light.png" width="190" alt="issues" /></picture></a><a href="https://github.com/vercel/next.js/blob/canary/license.md"><picture><source media="(prefers-color-scheme: dark)" srcset="img/license-dark.png" /><img src="img/license-light.png" width="190" alt="license" /></picture></a>
+
+---
+
+## What to look for
+
+| Variant | Expect |
+|---|---|
+| A / B / C | 1px borders around every tile, extra padding, zebra-striped row 2 |
+| C | does `cellspacing` change anything, or does CSS `padding` win? |
+| D | tiles follow the GitHub theme toggle |
+| E / E2 | clean bento, one link only — the look we want |
+| **G1** | **clean bento, no borders, per-tile links — the look we want AND links** |
+| G2 | same but with gaps if inline whitespace is significant |
+| H | G1 plus theme switching |
