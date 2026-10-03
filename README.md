@@ -272,3 +272,32 @@ the generator must emit G1's format exactly.
 | **G1** | **clean bento, no borders, per-tile links — the look we want AND links** |
 | G2 | same but with gaps if inline whitespace is significant |
 | H | G1 plus theme switching |
+
+---
+
+# ★ FINAL — fixed geometry + strips
+
+Two bugs fixed since the variants above:
+
+1. **Tile size** was `w*cellW + (w-1)*gutter`, one gutter too narrow per tile, so a
+   strip of four 1-span tiles came out 32px shorter than a strip of two 2-span tiles —
+   the ragged right edge visible in G above. Now every tile is `w * (cellW + gutter)`,
+   so **any strip summing to 4 cells is exactly 792px**, however it is divided.
+2. **Vertical gutter** read 12px against a horizontal 8px, because an inline `<img>`
+   reserves ~4px of baseline descender under it. Strip tiles are now rendered 4px
+   shorter with 2px vertical padding instead of 4px, so **both axes measure 8px**.
+
+Strips are separated by `<br />` inside ONE paragraph. Separate paragraphs add a 16px
+margin (24px total gutter); `<br />` gives exactly 8px.
+
+## FINAL light
+
+<a href="https://github.com/vercel/next.js"><img src="v2/hero-light.png" width="396" alt="next.js" /></a><a href="https://github.com/vercel/next.js/stargazers"><img src="v2/stars-light.png" width="198" alt="stars" /></a><a href="https://github.com/vercel/next.js/forks"><img src="v2/forks-light.png" width="198" alt="forks" /></a><br /><a href="https://github.com/vercel/next.js"><img src="v2/langs-light.png" width="396" alt="LANGUAGES" /></a><a href="https://github.com/vercel/next.js/issues"><img src="v2/issues-light.png" width="198" alt="issues" /></a><a href="https://github.com/vercel/next.js/blob/canary/license.md"><img src="v2/license-light.png" width="198" alt="license" /></a><br /><a href="https://nextjs.org/docs"><img src="v2/docs-light.png" width="792" alt="Documentation" /></a>
+
+## FINAL with dark mode
+
+<a href="https://github.com/vercel/next.js"><picture><source media="(prefers-color-scheme: dark)" srcset="v2/hero-dark.png" /><img src="v2/hero-light.png" width="396" alt="next.js" /></picture></a><a href="https://github.com/vercel/next.js/stargazers"><picture><source media="(prefers-color-scheme: dark)" srcset="v2/stars-dark.png" /><img src="v2/stars-light.png" width="198" alt="stars" /></picture></a><a href="https://github.com/vercel/next.js/forks"><picture><source media="(prefers-color-scheme: dark)" srcset="v2/forks-dark.png" /><img src="v2/forks-light.png" width="198" alt="forks" /></picture></a><br /><a href="https://github.com/vercel/next.js"><picture><source media="(prefers-color-scheme: dark)" srcset="v2/langs-dark.png" /><img src="v2/langs-light.png" width="396" alt="LANGUAGES" /></picture></a><a href="https://github.com/vercel/next.js/issues"><picture><source media="(prefers-color-scheme: dark)" srcset="v2/issues-dark.png" /><img src="v2/issues-light.png" width="198" alt="issues" /></picture></a><a href="https://github.com/vercel/next.js/blob/canary/license.md"><picture><source media="(prefers-color-scheme: dark)" srcset="v2/license-dark.png" /><img src="v2/license-light.png" width="198" alt="license" /></picture></a><br /><a href="https://nextjs.org/docs"><picture><source media="(prefers-color-scheme: dark)" srcset="v2/docs-dark.png" /><img src="v2/docs-light.png" width="792" alt="Documentation" /></picture></a>
+
+## FINAL — Mode A, same design as one image
+
+<a href="https://github.com/vercel/next.js"><picture><source media="(prefers-color-scheme: dark)" srcset="v2/frame-dark.png" /><img src="v2/frame-light.png" width="792" alt="bento" /></picture></a>
